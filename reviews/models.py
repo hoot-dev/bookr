@@ -19,6 +19,14 @@ class Book(models.Model):
     publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE)
     contributors = models.ManyToManyField('Contributor', through='BookContributor')
 
+    def isbn13(self, obj):
+        """ '9780316769174' => '978-0-31-676917-4' """
+        return "{}-{}-{}-{}-{}".format(
+            obj.isbn[0:3], obj.isbn[3:4],
+            obj.isbn[4:6], obj.isbn[6:12],
+            obj.isbn[12:13]
+            )
+
     def __str__(self):
         return self.title
 
@@ -31,8 +39,16 @@ class Contributor(models.Model):
     last_names = models.CharField(max_length=50, help_text='The contributor\'s last name or names')
     email = models.EmailField(help_text='The contact email for the contributor')
 
+    def initialled_name(obj):
+        """ 
+        obj.first_names='Jerome David', 
+        obj.last_names='Salinger' => 'Salinger, JD' 
+        """
+        initials = ''.join([name[0] for name in obj.first_names.split(' ')])
+        return "{}, {}".format(obj.last_names, initials)
+
     def __str__(self):
-        return self.first_names
+        return self.initialled_name()
 
 
 class BookContributor(models.Model):
