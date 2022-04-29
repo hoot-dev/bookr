@@ -155,8 +155,7 @@ def book_media(request, pk):
                 image = Image.open(cover)
                 image.thumbnail((300, 300))
                 image_data = BytesIO()
-                image.save(fp=image_data, \
-                format=cover.image.format)
+                image.save(fp=image_data, format=cover.image.format)
                 image_file = ImageFile(image_data)
                 book.cover.save(cover.name, image_file)
             book.save()
@@ -169,7 +168,7 @@ def book_media(request, pk):
         "instance": book,
         "form": form,
         "model_type": "Book",
-        "is_file_upload":True
+        "is_file_upload": True
     }
     
     return render(request, "reviews/instance-form.html", context)
