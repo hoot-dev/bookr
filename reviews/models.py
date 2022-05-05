@@ -22,14 +22,6 @@ class Book(models.Model):
     cover = models.ImageField(null=True, blank=True, upload_to="book_covers/")
     sample = models.FileField(null=True, blank=True, upload_to="book_samples/")
 
-    def isbn13(self, obj):
-        """ '9780316769174' => '978-0-31-676917-4' """
-        return "{}-{}-{}-{}-{}".format(
-            obj.isbn[0:3], obj.isbn[3:4],
-            obj.isbn[4:6], obj.isbn[6:12],
-            obj.isbn[12:13]
-            )
-
     def __str__(self):
         return self.title
 
