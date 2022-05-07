@@ -204,4 +204,6 @@ def book_media(request, pk):
     }
     
     return render(request, "reviews/instance-form.html", context)
-    
+
+def react_example(request):
+    return render(request, 'react-example.html', {"name": "Ben", "target": 5})

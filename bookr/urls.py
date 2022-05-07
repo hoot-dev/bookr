@@ -19,7 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from bookr.views import profile
-from reviews.views import book_search
+from reviews.views import book_search, react_example
 
 urlpatterns = [
     path('accounts/', include(('django.contrib.auth.urls', 'auth'), namespace='accounts')),
@@ -28,6 +28,7 @@ urlpatterns = [
     path('', include('reviews.urls')),
     path('book-search', book_search, name='book_search'),
     path('book_management/', include('book_management.urls')),
+    path('react-example/', react_example, name='react_example'),
 ]
 
 if settings.DEBUG:
