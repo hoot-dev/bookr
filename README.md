@@ -1,3 +1,5 @@
-# bookr
+# Web Development with Django - Packt Publishing
 
-Web Dev with Django project
+Creating the Bookr website with Django 3
+
+[Github Repo](https://github.com/PacktPublishing/Web-Development-with-Django)
